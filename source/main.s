@@ -1,5 +1,5 @@
 /**************************************
- Main program. Entry point
+ Main program's entry point
 **************************************/
 .section .init
 .globl _start
@@ -7,10 +7,13 @@ _start:
 mov sp, #0x8000
 b main
 
+/**************************************
+ Main program's main function
+**************************************/
 .section .text
 main:
-mov r0, #7
-mov r1, #1
+mov r0, #7 @ GPIO to use
+mov r1, #1 @ Value to set
 mov r2, #0
 mov r3, #0
 mov r4, #0

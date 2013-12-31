@@ -1,10 +1,10 @@
 /**************************************
  Timer function via sys timer of raspi
-   r0 - Time to wait
+   r0 - Time to wait (in cycles)
 **************************************/
 .globl wait
 wait:
-mov r3, r0 @ Copy time to wait to r1
+mov r3, r0 @ Copy time to wait to r3
 push {lr}
 bl get_sys_timer_base_address
 pop {lr}
