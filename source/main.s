@@ -17,14 +17,14 @@ mov r4, #0
 
 /* Configure GPIO#r0 as OUTPUT */
 push {r0, r1}
-bl setGPIO
+bl set_gpio_function
 pop {r0, r1}
 
 /* Turn on and off the LED */
 change_led:
 eor r1, r1, #1 @Set output value
 push {r0, r1}
-bl setBit
+bl set_gpio_value
 pop {r0, r1}
 
 mov r2, #0x3F0000

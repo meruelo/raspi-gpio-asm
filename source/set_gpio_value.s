@@ -3,8 +3,8 @@ Set bit (0/1) of GPIO n
    r0 - GPIO number
    r1 - bit value            
 **************************************/
-.globl setBit
-setBit:
+.globl set_gpio_value
+set_gpio_value:
 /* Check values */
 cmp r0, #53
 cmpls r1, #1
@@ -16,7 +16,7 @@ movhi pc, lr /* Exit function */
 mov r2, #0
 mov r4, r0
 push {lr}
-bl get_GPIO_base_address /* Better with LDR ?*/
+bl get_gpio_base_address /* Better with LDR ?*/
 pop {lr}
 
 /* Set R0 = GPIO + FUNC s*/
