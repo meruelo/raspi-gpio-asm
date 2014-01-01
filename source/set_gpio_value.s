@@ -14,11 +14,11 @@ movhi pc, lr /* Exit function */
 
 /* Get base address */
 mov r2, #0
-push {r4, r5} @ AAPCS
+push {r4, r5} @ 8-byte aligned (AAPCS)
 mov r4, r0
-push {lr}
+push {r6, lr} @ 8-byte aligned (AAPCS) 
 bl get_gpio_base_address /* Better with LDR ?*/
-pop {lr}
+pop {r6, lr}  @ 8-byte aligned (AAPCS)
 
 /* Set R0 = GPIO + FUNC s*/
 add r0, r0, r3
@@ -35,5 +35,5 @@ add r0, r5 @ Now r0 contains the BASE+FUNC+OFFSET
 and r2, r4, #31    @ r2 ← r4 mod 32
 mov r1, r1, lsl r2 @ r1 ← r1 << r2
 str r1, [r0]
-pop {r4, r5} @ AAPCS
+pop {r4, r5} @ 8-byte aligned (AAPCS)
 mov pc, lr

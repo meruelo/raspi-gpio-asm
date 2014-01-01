@@ -19,20 +19,20 @@ mov r3, #0
 mov r4, #0
 
 /* Configure GPIO#r0 as OUTPUT */
-push {r0, r1}
+push {r0, r1} @ 8-byte aligned (AAPCS)
 bl set_gpio_function
-pop {r0, r1}
+pop {r0, r1}  @ 8-byte aligned (AAPCS)
 
 /* Turn on and off the LED */
 ldr r2, =pattern
 mov r3, #0
 change_led:
 ldr r1, [r2, r3]
-push {r0, r1, r2, r3}
+push {r0, r1, r2, r3} @ 8-byte aligned (AAPCS)
 bl set_gpio_value
 ldr r0, =0x7A120
 bl wait
-pop {r0, r1, r2, r3}
+pop {r0, r1, r2, r3}  @ 8-byte aligned (AAPCS)
 add r3, #4
 cmp r3, #520
 movhi r3, #0 

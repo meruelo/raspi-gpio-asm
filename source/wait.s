@@ -5,7 +5,7 @@
 .globl wait
 wait:
 mov r3, r0 @ Copy time to wait to r3
-push {r4, lr} @ AAPCS
+push {r4, lr} @ 8-byte aligned (AAPCS)
 bl get_sys_timer_base_address
 
 ldr r1, [r0, #4] @ Read CLO register
@@ -19,5 +19,5 @@ ldrhi r1, [r0, #4]
 bhi loop
 
 /* Exit */
-pop {r4, lr} @ AAPCS
+pop {r4, lr} @ 8-byte aligned (AAPCS)
 mov pc, lr @ Exit 
