@@ -14,6 +14,7 @@ movhi pc, lr /* Exit function */
 
 /* Get base address */
 mov r2, #0
+push {r4, r5} @ AAPCS
 mov r4, r0
 push {lr}
 bl get_gpio_base_address /* Better with LDR ?*/
@@ -34,4 +35,5 @@ add r0, r5 @ Now r0 contains the BASE+FUNC+OFFSET
 and r2, r4, #31    @ r2 ← r4 mod 32
 mov r1, r1, lsl r2 @ r1 ← r1 << r2
 str r1, [r0]
+pop {r4, r5} @ AAPCS
 mov pc, lr
